@@ -1,4 +1,3 @@
-/* General resets and defaults */
 html, body {
     margin: 0;
     padding: 0;
@@ -13,29 +12,23 @@ html, body {
 body {
     min-height: 100%;
     display: flex;
-    flex-direction: column; /* Ensure body contents stack vertically */
+    flex-direction: column;
 }
 
-/* Typography */
 h2 {
     color: #902A02;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 a {
-    color: white;
+    color: rgb(237, 237, 237);
     text-decoration: none;
 }
 
-a:visited {
-    color: rgb(237, 237, 237);
-}
-
 a:hover {
-    font-style: italic;
+    color:white;
 }
 
-/* Header */
 .header {
     position: fixed;
     width: 100%;
@@ -84,7 +77,6 @@ a:hover {
     padding: 0;
 }
 
-/* Main content */
 .mainbody {
     margin-left: 130px;
     margin-top: 35px;
@@ -93,11 +85,10 @@ a:hover {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    overflow-y: auto; /* Add vertical scrolling only if needed */
+    overflow-y: auto;
     padding-bottom: 40px; /* Ensures content doesn’t overlap footer */
 }
 
-/* Footer */
 .footer {
     border-top: black 1px solid;
     width: 100%;
@@ -110,7 +101,7 @@ a:hover {
     z-index: 2;
     position: absolute; /* Fixed position at bottom */
     bottom: 0;
-    display: flex; /* Enable flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

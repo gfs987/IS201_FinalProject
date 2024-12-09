@@ -15,7 +15,17 @@ let gameOver = false; // Track the game state
 // Timer elements
 const timerDisplay = document.createElement("div");
 timerDisplay.id = "timer";
-timerDisplay.textContent = "Time: 0s";
+
+const timeSpan = document.createElement("span");
+timeSpan.id = "time";
+timeSpan.textContent = "Time: 0s";
+
+const mineCounterSpan = document.createElement("span");
+mineCounterSpan.id = "mine-counter";
+mineCounterSpan.textContent = ` | Mines: ${mineCount}`;
+
+timerDisplay.appendChild(timeSpan);
+timerDisplay.appendChild(mineCounterSpan);
 document.body.insertBefore(timerDisplay, gameContainer);
 
 function createGrid() {
@@ -46,7 +56,7 @@ function startTimer() {
 
     timerInterval = setInterval(() => {
         timeElapsed++;
-        timerDisplay.textContent = `Time: ${timeElapsed}s`;
+        document.getElementById("time").textContent = `Time: ${timeElapsed}s`;
     }, 1000);
 }
 
@@ -141,10 +151,14 @@ function toggleFlag(cell) {
         cell.classList.remove("flagged");
         cell.textContent = "";
         flaggedCells--;
+        updateMineCounter();
     } else {
-        cell.classList.add("flagged");
-        cell.textContent = "🚩";
-        flaggedCells++;
+        if (flaggedCells < mineCount) { // Prevent over-flagging
+            cell.classList.add("flagged");
+            cell.textContent = "🚩";
+            flaggedCells++;
+            updateMineCounter();
+        }
     }
 }
 
@@ -225,24 +239,9 @@ const refreshButton = document.getElementById("refresh-button");
 
 refreshButton.addEventListener("click", resetGame);
 
-function resetGame() {
-    stopTimer(); // Stop the timer if it's running
-    timeElapsed = 0;
-    timerDisplay.textContent = "Time: 0s";
-
-    // Clear the game state
-    grid = [];
-    minePositions = [];
-    revealedCells = 0;
-    flaggedCells = 0;
-    gameStarted = false;
-    gameOver = false;
-
-    // Clear the game board
-    gameContainer.innerHTML = "";
-
-    // Recreate the grid
-    createGrid();
+function updateMineCounter() {
+    const remainingMines = mineCount - flaggedCells;
+    document.getElementById("mine-counter").textContent = ` | Mines: ${remainingMines}`;
 }
 
 function placeMinesWithExclusion(excludeRow, excludeCol) {
@@ -271,26 +270,6 @@ function placeMinesWithExclusion(excludeRow, excludeCol) {
     }
 }
 
-function resetGame() {
-    stopTimer(); // Stop the timer if it's running
-    timeElapsed = 0;
-    timerDisplay.textContent = "Time: 0s";
-
-    // Clear the game state
-    grid = [];
-    minePositions = [];
-    revealedCells = 0;
-    flaggedCells = 0;
-    gameStarted = false;
-    gameOver = false;
-
-    // Clear the game board
-    gameContainer.innerHTML = "";
-
-    // Recreate the grid
-    createGrid();
-}
-
 function checkWin() {
   const totalCells = rows * cols;
   const nonMineCells = totalCells - mineCount;
@@ -312,3 +291,25 @@ function checkWin() {
   }
 }
 createGrid();
+
+function resetGame() {
+    stopTimer(); // Stop the timer if it's running
+    timeElapsed = 0;
+    flaggedCells = 0;
+
+    document.getElementById("time").textContent = "Time: 0s";
+    document.getElementById("mine-counter").textContent = ` | Mines: ${mineCount}`;
+
+    // Clear the game state
+    grid = [];
+    minePositions = [];
+    revealedCells = 0;
+    gameStarted = false;
+    gameOver = false;
+
+    // Clear the game board
+    gameContainer.innerHTML = "";
+
+    // Recreate the grid
+    createGrid();
+}

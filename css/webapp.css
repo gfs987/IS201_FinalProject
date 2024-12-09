@@ -3,19 +3,21 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Align content closer to the top */
   height: 100vh;
   margin: 0;
+  padding: 10px; /* Add padding to avoid cutting off elements */
   background-color: #f4f4f4;
 }
 
 h1 {
-  margin-bottom: 20px;
+  margin:10px 0;
 }
 
 #game-container {
   display: grid;
   gap: 2px;
+  overflow: auto; /* Allow scrolling if needed */
 }
 
 .cell {
@@ -64,4 +66,25 @@ h1 {
 
 #refresh-button:hover {
   background-color: #0056b3;
+}
+
+#instructions {
+  margin-bottom: 10px;
+  font-size: 16px;
+  text-align: center;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#instructions ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#instructions li {
+  margin: 5px 0;
 }
