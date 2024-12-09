@@ -1,0 +1,116 @@
+/* General resets and defaults */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5dcc4;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column; /* Ensure body contents stack vertically */
+}
+
+/* Typography */
+h2 {
+    color: #902A02;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgb(237, 237, 237);
+}
+
+a:hover {
+    font-style: italic;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    border-bottom: solid 1px black;
+    z-index: 10;
+    background-color: #9c5c42;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    top:0;
+}
+
+.headertext {
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 24px;
+}
+
+.navbarheader a {
+    margin-left: 12px;
+}
+
+/* Sidebar */
+.leftmenu {
+    position: fixed;
+    top: 60px; /* Aligns with header */
+    bottom: 0;
+    width: 125px;
+    z-index: 1;
+    padding: 20px 5px;
+    border-right: solid 1px black;
+    background-color: #dca281;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-y: auto; /* Adds scroll if content exceeds height */
+    box-sizing: border-box;
+}
+
+.leftmenu p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Main content */
+.mainbody {
+    margin-left: 130px;
+    margin-top: 35px;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow-y: auto; /* Add vertical scrolling only if needed */
+    padding-bottom: 40px; /* Ensures content doesn’t overlap footer */
+}
+
+/* Footer */
+.footer {
+    border-top: black 1px solid;
+    width: 100%;
+    height: 25px;
+    background-color: #9c5c42;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    line-height: 25px;
+    z-index: 2;
+    position: absolute; /* Fixed position at bottom */
+    bottom: 0;
+    display: flex; /* Enable flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
